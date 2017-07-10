@@ -13,12 +13,6 @@ var userSchema = new Schema({
   }
 }, { timestamps: true });
 
-// var User1 = new Schema({});
-//
-// userSchema.statics.find = function (query, callback) {
-//   var user = new User1({email:"teste"});
-//   user.save(callback);
-// };
 
 const User = model("User", userSchema);
 export default User;

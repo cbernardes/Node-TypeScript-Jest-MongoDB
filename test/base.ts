@@ -18,7 +18,7 @@ export class Test {
           mongoose.connection.on('connected', () => {
             console.log('db connected');
           });
-          controller.save(seed_data[1], done);
+          controller.saveMany(seed_data, done);
       	});
       }
       catch(error){
@@ -37,14 +37,15 @@ export class Test {
       }
       catch(error){
         console.log("Error while reseting mock db", err);
+        // process.exit();
         done();
       }
     });
   }
 
-  public execute = (testing_name: string, testing_method, validating_method: Function, params = {}, time_out?: number): void => {
+  public execute = (testing_name: string, testing_method, validating_method: Function, params = {}, time_out?=10000: number): void => {
     test(testing_name, done => {
       testing_method(params, validating_method(done));
-    }, 60000);
+    });
   }
 }

@@ -8,7 +8,7 @@
     "build": "npm run build-ts",
     "serve": "node dist/server.js",
     "build-ts": "tsc",
-    "test": "npm run build && jest"
+    "test": "npm run build && jest --forceExit"
   },
   "jest": {
     "globals": {

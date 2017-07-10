@@ -1,7 +1,6 @@
 import * as mongoose        from 'mongoose'
-import * as cache_manager   from 'cache-manager'
+import { cacheWrapper }     from './cache'
 
-let memoryCache = cache_manager.caching({store: 'memory', max: 100, ttl: 222220/*seconds*/});
 
 export class Crud {
   private model;  // we dont want the model being accessed outside the class
@@ -24,23 +23,27 @@ export class Crud {
     db_model.save(done);
   }
 
-  public getById = (params: any, done: Function): void => {
-    let {id} = params
-    this.model.findOne({_id: id}).exec(done);
+  public deleteById = (params: any, done: Function): void => {
+    let {id, _id} = params
+    this.model.remove({_id: id || _id}).exec(done);
   }
 
-  // cached methods
-  private cachedMethod = (name: string, method: Function) => {
-    return (params: any, done: Function): void => {
-      console.log("cache_manager", cache_manager);
-      memoryCache.wrap(name, function (cacheCallback) {
-          method(params, cacheCallback);
-      }, {ttl: 30}, done);
-    }
+  public deleteByQuery = (params: any, done: Function): void => {
+    let {query} = params
+    this.model.remove({query}).exec(done);
+  }
+
+  public saveMany = (params: any, done: Function): void => {
+    this.model.create(params, done);
+  }
+
+  public getById = (params: any, done: Function): void => {
+    let {id, _id} = params
+    this.model.findOne({_id: id || _id}).exec(done);
   }
 
   // todo define a key generator to name a cache method
-  public getAllCached = this.cachedMethod("getAll", this.getAll);
-  public getByIdCached = this.cachedMethod("getById", this.getById);
+  public getAllCached = cacheWrapper("getAll", this.getAll);
+  public getByIdCached = cacheWrapper("getById", this.getById);
 
 }
