@@ -15,3 +15,18 @@ export let Planning = {
   end: Date,
   expiry: Date
 }
+
+export let Display ={
+  active: {
+    type: Boolean
+    default: false
+  }
+  live: {
+    type: Boolean
+    default: false
+  }
+  test: {
+    type: Boolean
+    default: false
+  }
+}

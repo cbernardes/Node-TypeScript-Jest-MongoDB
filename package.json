@@ -8,16 +8,13 @@
     "build": "npm run build-ts",
     "serve": "node dist/server.js",
     "build-ts": "tsc",
-    "test": "npm run build && jest --forceExit"
+    "test": "export NODE_CONFIG_DIR='./config' && npm run build && jest --forceExit"
   },
   "jest": {
     "globals": {
       "__TS_CONFIG__": "tsconfig.json"
     },
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
+    "moduleFileExtensions": ["ts", "js"],
     "transform": {
       "^.+\\.(ts)$": "./node_modules/ts-jest/preprocessor.js"
     },

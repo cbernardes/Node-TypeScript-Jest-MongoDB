@@ -3,6 +3,7 @@ import * as  config           from 'config'
 import { Mockgoose }          from 'mockgoose'
 
 let mockgoose = new Mockgoose(mongoose);
+mongoose.Promise = global.Promise
 // mockgoose.helper.setDbVersion("3.0.4");
 
 export class Test {
@@ -12,9 +13,7 @@ export class Test {
         console.log("beforeAll");
         mockgoose.prepareStorage().then(() => {
           console.log("Preparing mockgoose data");
-      		mongoose.connect(config.get("database.connection"), (err) =>{
-            console.log("db connecting");
-          });
+      		mongoose.connect(config.get("database.connection"), { useMongoClient: true });
           mongoose.connection.on('connected', () => {
             console.log('db connected');
           });
