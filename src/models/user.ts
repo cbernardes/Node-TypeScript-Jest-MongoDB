@@ -1,5 +1,5 @@
 import { Document, Schema, model}     from 'mongoose'
-// import * as base                      from './base'
+import { Dates }                      from './base'
 
 var userSchema = new Schema({
   email: { type: String, unique: true },
@@ -10,9 +10,9 @@ var userSchema = new Schema({
     location: String,
     website: String,
     picture: String
-  }
+  },
+  dates: Dates
 }, { timestamps: true });
-
 
 const User = model("User", userSchema);
 export default User;

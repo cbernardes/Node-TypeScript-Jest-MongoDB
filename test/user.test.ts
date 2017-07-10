@@ -48,6 +48,7 @@ user_test.execute('user --> get_byEmail', user_controller.get_byEmail, (done) =>
 
 user_test.execute('user --> getAll cached', user_controller.getAllCached, (done) => {
   return function validate(err: any, cached_users: any) {
+    console.log("cached_users", cached_users);
     expect(cached_users).toHaveLength(3);
     done();
   }
