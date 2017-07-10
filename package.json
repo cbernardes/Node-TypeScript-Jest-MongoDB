@@ -1,0 +1,51 @@
+{
+  "name": "type-script-node-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "npm run build && npm run serve",
+    "build": "npm run build-ts",
+    "serve": "node dist/server.js",
+    "build-ts": "tsc",
+    "test": "npm run build && jest"
+  },
+  "jest": {
+    "globals": {
+      "__TS_CONFIG__": "tsconfig.json"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts)$": "./node_modules/ts-jest/preprocessor.js"
+    },
+    "testMatch": [
+      "**/test/**/*.test.(ts|js)"
+    ],
+    "testEnvironment": "node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mongodb": "^2.2.7",
+    "@types/mongoose": "^4.7.18",
+    "jest": "^20.0.4",
+    "mockgoose": "^7.3.3",
+    "ts-jest": "^20.0.6",
+    "typescript": "^2.4.1"
+  },
+  "dependencies": {
+    "@types/body-parser": "^1.16.4",
+    "@types/express": "^4.0.36",
+    "@types/underscore": "^1.8.1",
+    "body-parser": "^1.17.2",
+    "cache-manager": "^2.4.0",
+    "config": "^1.26.1",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.1",
+    "underscore": "^1.8.3"
+  }
+}

@@ -1,0 +1,5 @@
+
+
+database:
+  connection:      "mongodb://localhost/node_typescript"
+  connection_test: "mongodb://localhost/node_typescript_test"
