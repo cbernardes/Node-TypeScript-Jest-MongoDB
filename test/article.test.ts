@@ -23,9 +23,4 @@ const seed_articles = [
 
 let article_test = new Test(article_controller, seed_articles);
 
-article_test.execute('article --> getAll', article_controller.getAll, (done) => {
-  return function validate(err: any, articles: any) {
-    expect(articles).toHaveLength(2);
-    done();
-  }
-});
+article_test.testCruds("article");
