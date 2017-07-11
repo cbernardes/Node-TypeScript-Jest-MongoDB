@@ -34,7 +34,8 @@ export class Crud {
   }
 
   public saveMany = (params: any, done: Function): void => {
-    this.model.create(params, done);
+    let {obj_list} = params
+    this.model.create(obj_list, done);
   }
 
   public getById = (params: any, done: Function): void => {

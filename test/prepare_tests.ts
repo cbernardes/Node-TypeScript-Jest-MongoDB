@@ -13,13 +13,15 @@ async function mockgooseConnection() {
   await mockgoose.prepareStorage();
   mongoose.connect(config.get("database.connection"), {useMongoClient: true})
   mongoose.connection.on('connected', () => {
-    // console.log('db connected');
+    let models = mongoose.models;
+    // console.log('db connected', mongoose.models);
   });
   mongoose.connection.on('disconnected', function () {
     // console.log('db disconnected');
   });
 
 }
+
 
 try{
   mockgooseConnection();

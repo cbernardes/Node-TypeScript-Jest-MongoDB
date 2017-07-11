@@ -12,12 +12,12 @@ API using Node TypeScript Jest and MongoDB
   - Mockgoose
 
 ## Execute the API
-```
+```sh
 $ npm install
 $ npm start
 ```
 
 ## Test the API
-```
+```sh
 $ npm run test
 ```
