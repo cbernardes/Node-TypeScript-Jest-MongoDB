@@ -4,16 +4,21 @@ import MainRouters          from "./routers/main";
 import * as config          from "config";
 import * as mongoose        from "mongoose";
 
-
+import { Mockgoose }          from 'mockgoose'
 
 /**
  * Create Express server.
  */
 const app = express();
+const _TEST_ = process.env.NODE_ENV == 'test';
 
 /**
  * Connect to MongoDB.
  */
+if (_TEST_) {
+  let mockgoose = new Mockgoose(mongoose);
+}
+
 mongoose.connect(config.get("database.connection"));
 
 mongoose.connection.on("error", () => {

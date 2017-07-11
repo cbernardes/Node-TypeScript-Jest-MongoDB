@@ -8,7 +8,7 @@
     "build": "npm run build-ts",
     "serve": "node dist/server.js",
     "build-ts": "tsc",
-    "test": "export NODE_CONFIG_DIR='./config' && npm run build && jest --forceExit"
+    "test": "npm run build && jest --forceExit"
   },
   "jest": {
     "globals": {
@@ -21,6 +21,7 @@
     "testMatch": [
       "**/test/**/*.test.(ts|js)"
     ],
+    "setupFiles": ["./test/prepare_tests.ts"],
     "testEnvironment": "node"
   },
   "keywords": [],

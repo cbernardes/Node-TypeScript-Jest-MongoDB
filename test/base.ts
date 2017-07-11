@@ -1,42 +1,20 @@
-import * as  mongoose         from 'mongoose'
-import * as  config           from 'config'
-import { Mockgoose }          from 'mockgoose'
-
-let mockgoose = new Mockgoose(mongoose);
-mongoose.Promise = global.Promise
-// mockgoose.helper.setDbVersion("3.0.4");
-
 export class Test {
   constructor(controller: Module, seed_data: Array, before_all: Function, after_all: Function) {
     beforeAll(done => {
-      try{
-        console.log("beforeAll");
-        mockgoose.prepareStorage().then(() => {
-          console.log("Preparing mockgoose data");
-      		mongoose.connect(config.get("database.connection"), { useMongoClient: true });
-          mongoose.connection.on('connected', () => {
-            console.log('db connected');
-          });
-          controller.saveMany(seed_data, done);
-      	});
-      }
-      catch(error){
-        console.log("Error while setting default connection", error)
-        done();
-      }
+      // console.log("beforeAll");
+      controller.saveMany(seed_data, done);
     });
 
     afterAll(done => {
       try{
-        console.log("afterAll");
+        // console.log("afterAll");
         mockgoose.helper.reset().then(() => {
-          console.log("mockgoose reset");
+          // console.log("mockgoose reset");
           done();
         });
       }
       catch(error){
         console.log("Error while reseting mock db", err);
-        // process.exit();
         done();
       }
     });
@@ -45,6 +23,6 @@ export class Test {
   public execute = (testing_name: string, testing_method, validating_method: Function, params = {}, time_out?=10000: number): void => {
     test(testing_name, done => {
       testing_method(params, validating_method(done));
-    });
+    }, 2000);
   }
 }

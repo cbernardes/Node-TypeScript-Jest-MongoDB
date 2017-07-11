@@ -18,15 +18,15 @@ export let Planning = {
 
 export let Display ={
   active: {
-    type: Boolean
+    type: Boolean,
     default: false
-  }
+  },
   live: {
-    type: Boolean
+    type: Boolean,
     default: false
-  }
+  },
   test: {
-    type: Boolean
+    type: Boolean,
     default: false
   }
 }
